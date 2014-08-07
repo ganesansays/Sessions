@@ -12,6 +12,7 @@ namespace Session1
         {
             Picture objPic = new Picture(10, 10, "white");
 
+            //Just to test git commit ...
             //2 circle
             Shape objShape1 = new Circle(1, "black");
             objPic.add(objShape1);
