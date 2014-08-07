@@ -1,0 +1,5 @@
+D:\Sessions\Session1\Session1AnotherConsoleApplication\bin\Debug\Session1AnotherConsoleApplication.exe.config
+D:\Sessions\Session1\Session1AnotherConsoleApplication\bin\Debug\Session1AnotherConsoleApplication.exe
+D:\Sessions\Session1\Session1AnotherConsoleApplication\bin\Debug\Session1AnotherConsoleApplication.pdb
+D:\Sessions\Session1\Session1AnotherConsoleApplication\obj\Debug\Session1AnotherConsoleApplication.exe
+D:\Sessions\Session1\Session1AnotherConsoleApplication\obj\Debug\Session1AnotherConsoleApplication.pdb

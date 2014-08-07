@@ -1,0 +1,4 @@
+D:\Sessions\Session1\Session1Library\bin\Debug\Session1Library.dll
+D:\Sessions\Session1\Session1Library\bin\Debug\Session1Library.pdb
+D:\Sessions\Session1\Session1Library\obj\Debug\Session1Library.dll
+D:\Sessions\Session1\Session1Library\obj\Debug\Session1Library.pdb
