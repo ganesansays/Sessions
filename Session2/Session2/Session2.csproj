@@ -48,6 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RaiseInvoice.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="SalesOperations.cs" />
     <Compile Include="SalesPersonOperation.cs" />
   </ItemGroup>
   <ItemGroup>
