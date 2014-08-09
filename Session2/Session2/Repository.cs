@@ -11,11 +11,11 @@ namespace Session2
 
     static class Repository
     {
-        public static List<SalesPerson> SalesPerson;
-        public static List<Customer> Customers;
-        public static List<Product> Products;
-        public static List<Sale> SaleList;
-        public static List<Invoice> InvoiceList;
-        public static List<Bill> Bills;
+        public static List<SalesPerson> SalesPerson = new List<SalesPerson>();
+        public static List<Customer> Customers = new List<Customer>();
+        public static List<Product> Products = new List<Product>();
+        public static List<Sale> SaleList = new List<Sale>();
+        public static List<Invoice> InvoiceList = new List<Invoice>();
+        public static List<Bill> Bills = new List<Bill>();
     }
 }
