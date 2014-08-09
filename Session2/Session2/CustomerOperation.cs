@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Session2
 {
-    class CustomerOperation
+    static class CustomerOperation
     {
-        public void CreateCustomer(Customer customer)
+        public static void CreateCustomer(Customer customer)
         {
             Repository.Customers.Add(customer);
         }
 
-        public Customer FetchCustomer(int Id)
+        public static Customer FetchCustomer(int Id)
         {
             /*for (int i = 0; i < Customers.Count; i++)
             {
@@ -28,7 +28,7 @@ namespace Session2
                 );
         }
 
-        public void UpdateCustomer(Customer customer)
+        public static void UpdateCustomer(Customer customer)
         {
             if (customer == null) return;
 
@@ -43,7 +43,7 @@ namespace Session2
             }
         }
 
-        public void DeleteCustomer(int Id)
+        public static void DeleteCustomer(int Id)
         {
             Customer cust = Repository.Customers.Find(
                     c => c.Id == Id
