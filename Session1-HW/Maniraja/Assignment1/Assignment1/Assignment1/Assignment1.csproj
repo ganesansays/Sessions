@@ -7,8 +7,8 @@
     <ProjectGuid>{EDCCDFF1-9963-4D1A-98F7-9D1F02F30A74}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Assignment1</RootNamespace>
-    <AssemblyName>Assignment1</AssemblyName>
+    <RootNamespace>AssignmentClasses</RootNamespace>
+    <AssemblyName>AssignmentClasses</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,7 +43,10 @@
   <ItemGroup>
     <Compile Include="Animal.cs" />
     <Compile Include="Cheetha.cs" />
+    <Compile Include="Eagle.cs" />
     <Compile Include="Elephant.cs" />
+    <Compile Include="IClimbable.cs" />
+    <Compile Include="IFlyable.cs" />
     <Compile Include="mainProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Zebra.cs" />

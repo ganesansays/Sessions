@@ -8,16 +8,21 @@ namespace AssignmentClasses
 {
     class Zebra : Animal
     {
-        int age;
-        int weight;
-        public Zebra(int age, int weight)
+        public Zebra(int age, int weight) 
+            : base (age, weight)
         {
-            this.age = age;
-            this.weight = weight;
+        
         }
+
         public override void Feed()
         {
-            Console.WriteLine("Feed Zebra..." + age + ".." + weight);
+            Console.WriteLine("Feed Zebra...");
+            printAgeAndWeight();
+        }
+
+        public override void makeSound()
+        {
+            Console.WriteLine("Zebra sound ...");
         }
     }
 }

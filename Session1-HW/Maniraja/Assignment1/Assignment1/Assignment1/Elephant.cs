@@ -6,18 +6,32 @@ using System.Threading.Tasks;
 
 namespace AssignmentClasses
 {
-    class Elephant : Animal
+    class Elephant : Animal, IClimbable, IFlyable
     {
-        int age;
-        int weight;
         public Elephant(int age, int weight)
+            : base(age, weight)
         {
-            this.age = age;
-            this.weight = weight;
+        
         }
         public override void Feed()
         {
-            Console.WriteLine("Elephant Feed..." + age + ".." + weight);
+            Console.WriteLine("Elephant Feed...");
+            printAgeAndWeight();
         }
-     }
+        
+        public override void makeSound()
+        {
+            Console.WriteLine("Elephant sound ...");
+        }
+
+        public void Climb()
+        {
+            Console.WriteLine("Climbing ...");
+        }
+
+        public void Fly()
+        {
+            Console.WriteLine("Flying ...");
+        }
+    }
 }

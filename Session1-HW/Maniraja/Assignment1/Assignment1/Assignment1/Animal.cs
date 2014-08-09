@@ -6,12 +6,24 @@ using System.Threading.Tasks;
 
 namespace AssignmentClasses
 {
-    class Animal
+    abstract class Animal
     {
-        public virtual void Feed()
+        public int age { get; set; }
+        public int weight { get; set; }
+
+        public Animal(int age, int weight)
         {
-            Console.WriteLine("Animal...");
+            this.age = age;
+            this.weight = weight;
         }
 
+        public abstract void Feed();
+
+        public abstract void makeSound();
+
+        protected void printAgeAndWeight()
+        {
+            Console.WriteLine("Age: " + age + " Weight: " + weight);
+        }
     }
 }

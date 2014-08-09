@@ -37,6 +37,28 @@ namespace AssignmentClasses
             foreach(Animal tempAnimalObject in animalList)
             {
                 tempAnimalObject.Feed();
+                tempAnimalObject.makeSound();
+            }
+        }
+        public void climbOrNot()
+        {
+            foreach (Animal tempAnimalObject in animalList)
+            {
+                if (tempAnimalObject is IClimbable)
+                {
+                    IClimbable climbableAnimal = tempAnimalObject as IClimbable;
+                    climbableAnimal.Climb();
+                }
+                
+                if (tempAnimalObject is IFlyable)
+                {
+                    IFlyable flyableAnimal = (tempAnimalObject as IFlyable);
+                    flyableAnimal.Fly();
+                }
+                else
+                {
+                    Console.WriteLine("Cant Climb or Fly ... probably can walk");
+                }
             }
         }
         public void listZooKeepers()

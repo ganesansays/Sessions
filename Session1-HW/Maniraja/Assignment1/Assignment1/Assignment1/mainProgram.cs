@@ -10,24 +10,22 @@ namespace Assignment1
     class mainProgram
     {
         //This is in Version Control
-        Trying it for the second time
+        //Trying it for the second time
         static void Main(string[] args)
         {
             Zoo zooObj = new Zoo("Natural Wonders", "Vandalur", "GST, vandalur, Chennai");
-            zooObj.induct(new Cheetha(10, 100));
-            zooObj.induct(new Elephant(50, 400));
-            zooObj.induct(new Zebra(5, 100));
+
+            Animal objElephant = new Elephant(10, 100);
+
+            zooObj.induct(objElephant);
+            zooObj.induct(new Zebra(50, 400));
+            zooObj.induct(new Cheetha(5, 100));
+
             zooObj.inductZooKeeper(new ZooKeeper("Mani"));
             zooObj.inductZooKeeper(new ZooKeeper("Raja"));
-
             zooObj.showAllAnimals();
             zooObj.listZooKeepers();
-
-            /*
-             * Cheetha cheethaObj = new Cheetha(7, 800);
-            Elephant elephantObj = new Elephant(7, 800);
-            elephantObj.Feed();
-             */
+            zooObj.climbOrNot();
         }
     }
 }
