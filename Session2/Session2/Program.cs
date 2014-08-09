@@ -13,17 +13,5 @@ namespace Session2
         {
              
         }
-
-        
-        //CRUD (Create/Read/Update/Delete) Customer
-        //CRUD SalesPerson
-        //CRUD Product
-
-        
-
-
-        //Create Sale (Product/Customer/Salesperson)
-        //Raise Invoice (Customer/Product)
-        //Pay Bill (Customer/Invoice)
     }
 }

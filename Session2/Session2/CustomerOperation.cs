@@ -14,7 +14,7 @@ namespace Session2
             Repository.Customers.Add(customer);
         }
 
-        public Customer ReadCustomer(int Id)
+        public Customer FetchCustomer(int Id)
         {
             /*for (int i = 0; i < Customers.Count; i++)
             {
