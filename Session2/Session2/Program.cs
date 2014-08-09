@@ -32,8 +32,7 @@ namespace Session2
                 switch (choice)
                 {
                     case 1:
-                        Customer cust = GatherCustomerInformation();
-                        CustomerOperation.CreateCustomer(cust);
+                        HandleCustomerInformation();
                         break;
                     case 2:
                         break;
@@ -52,21 +51,50 @@ namespace Session2
             }
         }
 
-        private static Customer GatherCustomerInformation()
+        private static void HandleCustomerInformation()
         {
-            Console.Write("Enter Customer Id: ");
-            string idInput = Console.ReadLine();
-            Console.Write("Enter Customer Name: ");
-            string name = Console.ReadLine();
-            Console.Write("Enter Contact Number: ");
-            string contactNumber = Console.ReadLine();
+            while (true)
+            {
+                Console.WriteLine("What operation you want to perform?");
+                Console.WriteLine("[1]: Create");
+                Console.WriteLine("[2]: Fetch");
+                Console.WriteLine("[3]: Update");
+                Console.WriteLine("[4]: Delete");
+                Console.WriteLine("[5]: Go to main menu");
 
-            int id = 0;
-            Int32.TryParse(idInput, out id);
+                string choiceString = Console.ReadLine();
+                int choice = 0;
+                if (!Int32.TryParse(choiceString, out choice))
+                {
+                    Console.WriteLine("Please enter a valid choice ...");
+                }
 
-            Customer cust = new Customer(id, name, contactNumber);
+                switch (choice)
+                {
+                    case 1:
+                        Console.Write("Enter Customer Id: ");
+                        string idInput = Console.ReadLine();
+                        Console.Write("Enter Customer Name: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Enter Contact Number: ");
+                        string contactNumber = Console.ReadLine();
 
-            return cust;
+                        int id = 0;
+                        Int32.TryParse(idInput, out id);
+
+                        Customer cust = new Customer(id, name, contactNumber);
+                        CustomerOperation.CreateCustomer(cust);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        return;
+                }
+            }
         }
     }
 }
@@ -76,7 +104,6 @@ namespace Session2
 
 namespace Session2
 {
-
     class SalesOperations
     {
         public void CreateSale(Sale saleObj)
