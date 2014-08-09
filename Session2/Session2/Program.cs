@@ -20,6 +20,7 @@ namespace Session2
                 Console.WriteLine("[4]: Sale");
                 Console.WriteLine("[5]: Invoice");
                 Console.WriteLine("[6]: Bill");
+                Console.WriteLine("[7]: Exit");
 
                 string choiceString = Console.ReadLine();
                 int choice = 0;
@@ -44,6 +45,8 @@ namespace Session2
                         break;
                     case 6:
                         break;
+                    case 7:
+                        return;
                     default:
                         Console.WriteLine("Please enter a valid choice ...");
                         continue;
@@ -70,19 +73,19 @@ namespace Session2
                 }
 
                 switch (choice)
-        {
+                {
                     case 1:
-            Console.Write("Enter Customer Id: ");
-            string idInput = Console.ReadLine();
-            Console.Write("Enter Customer Name: ");
-            string name = Console.ReadLine();
-            Console.Write("Enter Contact Number: ");
-            string contactNumber = Console.ReadLine();
+                        Console.Write("Enter Customer Id: ");
+                        string idInput = Console.ReadLine();
+                        Console.Write("Enter Customer Name: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Enter Contact Number: ");
+                        string contactNumber = Console.ReadLine();
 
-            int id = 0;
-            Int32.TryParse(idInput, out id);
+                        int id = 0;
+                        Int32.TryParse(idInput, out id);
 
-            Customer cust = new Customer(id, name, contactNumber);
+                        Customer cust = new Customer(id, name, contactNumber);
                         CustomerOperation.CreateCustomer(cust);
                         break;
                     case 2:
