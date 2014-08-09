@@ -89,6 +89,12 @@ namespace Session2
                         CustomerOperation.CreateCustomer(cust);
                         break;
                     case 2:
+                        Console.Write("Enter Customer Id: ");
+                        idInput = Console.ReadLine();
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+                        cust = CustomerOperation.FetchCustomer(id);
+                        Console.WriteLine(cust.Name);
                         break;
                     case 3:
                         break;
