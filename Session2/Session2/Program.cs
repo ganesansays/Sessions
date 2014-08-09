@@ -13,6 +13,7 @@ namespace Session2
         {
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("Which information you want to act on?");
                 Console.WriteLine("[1]: Customer");
                 Console.WriteLine("[2]: Product");
@@ -58,6 +59,7 @@ namespace Session2
         {
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("What operation you want to perform?");
                 Console.WriteLine("[1]: Create");
                 Console.WriteLine("[2]: Fetch");
@@ -75,6 +77,7 @@ namespace Session2
                 switch (choice)
                 {
                     case 1:
+                        Console.Clear();
                         Console.Write("Enter Customer Id: ");
                         string idInput = Console.ReadLine();
                         Console.Write("Enter Customer Name: ");
@@ -87,18 +90,64 @@ namespace Session2
 
                         Customer cust = new Customer(id, name, contactNumber);
                         CustomerOperation.CreateCustomer(cust);
+                        Console.WriteLine("Sucessfully created ... press anykey to continue ...");
+                        Console.ReadLine();
                         break;
                     case 2:
+                        Console.Clear();
                         Console.Write("Enter Customer Id: ");
                         idInput = Console.ReadLine();
                         id = 0;
                         Int32.TryParse(idInput, out id);
                         cust = CustomerOperation.FetchCustomer(id);
-                        Console.WriteLine(cust.Name);
+
+                        if (cust != null) 
+                        { 
+                            Console.WriteLine(cust.Name);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Customer doesnt exist");
+                        }
+
+                        Console.WriteLine("press anykey to continue ...");
+                        Console.ReadLine();
                         break;
                     case 3:
+                        Console.Clear();
+                        Console.Write("Enter Customer Id: ");
+                        idInput = Console.ReadLine();
+                        Console.Write("Enter Customer Name: ");
+                        name = Console.ReadLine();
+                        Console.Write("Enter Contact Number: ");
+                        contactNumber = Console.ReadLine();
+
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+
+                        cust = new Customer(id, name, contactNumber);
+
+                        if (cust != null) 
+                        { 
+                            CustomerOperation.UpdateCustomer(cust);
+                            Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Customer doesnt exist");
+                        }
+
+                        Console.ReadLine();
                         break;
                     case 4:
+                        Console.Clear();
+                        Console.Write("Enter Customer Id: ");
+                        idInput = Console.ReadLine();
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+                        CustomerOperation.DeleteCustomer(id);
+                        Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
+                        Console.ReadLine();
                         break;
                     case 5:
                         return;
