@@ -48,6 +48,7 @@ namespace Session2
                     case 5:
                         break;
                     case 6:
+                        HandleBills();
                         break;
                     case 7:
                         return;
@@ -502,6 +503,229 @@ namespace Session2
                 }
             }
         }
+
+        private static void HandleBills()
+        {
+
+            while (true)
+            {
+
+                Console.Clear();
+
+                Console.WriteLine("What operation you want to perform?");
+
+                Console.WriteLine("[1]: Create");
+
+                Console.WriteLine("[2]: Fetch");
+
+                Console.WriteLine("[3]: Update");
+
+                Console.WriteLine("[4]: Delete");
+
+                Console.WriteLine("[5]: Go to main menu");
+
+                string choiceString = Console.ReadLine();
+
+                int choice = 0;
+
+                if (!Int32.TryParse(choiceString, out choice))
+                {
+
+                    Console.WriteLine("Please enter a valid choice ...");
+
+                }
+
+                switch (choice)
+                {
+
+                    case 1:
+
+                        Console.Clear();
+
+                        Console.Write("Enter Bill Id: ");
+
+                        string idInput = Console.ReadLine();
+
+                        Console.Write("Enter Invoice Id: ");
+
+                        string invoiceidInput = Console.ReadLine();
+
+                        Console.Write("Enter Customer Id: ");
+
+                        string customeridInput = Console.ReadLine();
+
+                        Console.Write("Enter Amount Paid: ");
+
+                        string amountpaidinput = Console.ReadLine();
+
+                        int id = 0;
+
+                        Int32.TryParse(idInput, out id);
+
+                        int invoiceid = 0;
+
+                        Int32.TryParse(invoiceidInput, out invoiceid);
+
+                        int customerid = 0;
+
+                        Int32.TryParse(customeridInput, out customerid);
+
+                        decimal amountpaid = 0.00M;
+
+                        decimal.TryParse(amountpaidinput, out amountpaid);
+
+                        Bill transbill = new Bill(id, invoiceid, customerid, amountpaid);
+
+                        BillOperations.CreateBill(transbill);
+
+                        Console.WriteLine("Sucessfully created ... press anykey to continue ...");
+
+                        Console.ReadLine();
+
+                        break;
+
+                    case 2:
+
+                        Console.Clear();
+
+                        Console.Write("Enter Bill Id: ");
+
+                        idInput =
+
+                        Console.ReadLine();
+
+                        id = 0;
+
+                        Int32.TryParse(idInput, out id);
+
+                        transbill =
+
+                        BillOperations.FetchBill(id);
+
+                        if (transbill != null)
+                        {
+
+                            Console.WriteLine("Customer Id: " + transbill.CustomerId);
+
+                            Console.WriteLine("Invoice Id: " + transbill.InvoiceId);
+
+                            Console.WriteLine("Amount Paid: " + transbill.AmountPaid);
+
+                        }
+
+                        else
+                        {
+
+                            Console.WriteLine("Bill Id doesnt exist");
+
+                        }
+
+                        Console.WriteLine("press anykey to continue ...");
+
+                        Console.ReadLine();
+
+                        break;
+
+                    case 3:
+
+                        Console.Clear();
+
+                        Console.Write("Enter Bill Id: ");
+
+                        idInput =
+
+                        Console.ReadLine();
+
+                        Console.Write("Enter Invoice Id: ");
+
+                        invoiceidInput =
+
+                        Console.ReadLine();
+
+                        Console.Write("Enter Customer Id: ");
+
+                        customeridInput =
+
+                        Console.ReadLine();
+
+                        Console.Write("Enter Amount Paid: ");
+
+                        amountpaidinput =
+
+                        Console.ReadLine();
+
+                        id = 0;
+
+                        Int32.TryParse(idInput, out id);
+
+                        invoiceid = 0;
+
+                        Int32.TryParse(invoiceidInput, out invoiceid);
+
+                        customerid = 0;
+
+                        Int32.TryParse(customeridInput, out customerid);
+
+                        amountpaid = 0.00M;
+
+                        decimal.TryParse(amountpaidinput, out amountpaid);
+
+                        transbill =
+
+                        new Bill(id, invoiceid, customerid, amountpaid);
+
+                        if (transbill != null)
+                        {
+
+                            BillOperations.UpdateBill(transbill);
+
+                            Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
+
+                        }
+
+                        else
+                        {
+
+                            Console.WriteLine("Bill Id doesnt exist");
+
+                        }
+
+                        Console.ReadLine();
+
+                        break;
+
+                    case 4:
+
+                        Console.Clear();
+
+                        Console.Write("Enter Bill Id: ");
+
+                        idInput =
+
+                        Console.ReadLine();
+
+                        id = 0;
+
+                        Int32.TryParse(idInput, out id);
+
+                        BillOperations.DeleteBill(id);
+
+                        Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
+
+                        Console.ReadLine();
+
+                        break;
+
+                    case 5:
+
+                        return;
+
+                }
+
+            }
+
+        }
+
     }
 }
         

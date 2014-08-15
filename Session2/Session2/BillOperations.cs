@@ -9,19 +9,19 @@ namespace Session2
 {
     class BillOperations
     {
-        public void CreateBill(Bill bill)
+        public static void CreateBill(Bill bill)
         {
             Repository.Bills.Add(bill);
         }
 
-        public Bill FetchBill(int Id)
+        public static Bill FetchBill(int Id)
         {
             return Repository.Bills.Find(
                   bill => bill.Id == Id
               );
         }
 
-        public void UpdateBill(Bill bill)
+        public static void UpdateBill(Bill bill)
         {
             if (bill == null) return;
 
@@ -35,7 +35,7 @@ namespace Session2
             }
         }
 
-        public void DeleteBill(int Id)
+        public static void DeleteBill(int Id)
         {
             Bill bill = Repository.Bills.Find(
                     b => b.Id == Id
