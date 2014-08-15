@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessEntities;
+using Session2.View;
 
 namespace Session2
 {
@@ -14,22 +15,10 @@ namespace Session2
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Which information you want to act on?");
-                Console.WriteLine("[1]: Customer");
-                Console.WriteLine("[2]: Product");
-                Console.WriteLine("[3]: Sales Person");
-                Console.WriteLine("[4]: Sale");
-                Console.WriteLine("[5]: Invoice");
-                Console.WriteLine("[6]: Bill");
-                Console.WriteLine("[7]: Exit");
 
-                string choiceString = Console.ReadLine();
-                int choice = 0;
-                if (!Int32.TryParse(choiceString, out choice))
-                {
-                    Console.WriteLine("Please enter a valid choice ...");
-                    continue;
-                }
+                int choice = Home.Display();
+
+                //Customer, Create
 
                 switch (choice)
                 {
@@ -189,81 +178,32 @@ namespace Session2
 
         }
 
-        private static void HandleCustomerInformation()
+        private static void HandleCustomerInformation() //CustomerController -> Create
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("What operation you want to perform?");
-                Console.WriteLine("[1]: Create");
-                Console.WriteLine("[2]: Fetch");
-                Console.WriteLine("[3]: Update");
-                Console.WriteLine("[4]: Delete");
-                Console.WriteLine("[5]: Go to main menu");
+                int choice = CustomerView.Display();
 
-                string choiceString = Console.ReadLine();
-                int choice = 0;
-                if (!Int32.TryParse(choiceString, out choice))
+                switch (choice) 
                 {
-                    Console.WriteLine("Please enter a valid choice ...");
-                }
-
-                switch (choice)
-                {
-                    case 1:
-                        Console.Clear();
-                        Console.Write("Enter Customer Id: ");
-                        string idInput = Console.ReadLine();
-                        Console.Write("Enter Customer Name: ");
-                        string name = Console.ReadLine();
-                        Console.Write("Enter Contact Number: ");
-                        string contactNumber = Console.ReadLine();
-
-                        int id = 0;
-                        Int32.TryParse(idInput, out id);
-
-                        Customer cust = new Customer(id, name, contactNumber);
-                        CustomerOperation.CreateCustomer(cust);
+                    case 1: //Create
+                        //Start
+                        Customer cust = CustomerView.Create(); //Display View
+                        CustomerOperation.CreateCustomer(cust); //Business Operation
                         Console.WriteLine("Sucessfully created ... press anykey to continue ...");
                         Console.ReadLine();
                         break;
-                    case 2:
-                        Console.Clear();
-                        Console.Write("Enter Customer Id: ");
-                        idInput = Console.ReadLine();
-                        id = 0;
-                        Int32.TryParse(idInput, out id);
-                        cust = CustomerOperation.FetchCustomer(id);
-
-                        if (cust != null)
-                        {
-                            Console.WriteLine(cust.Name);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Customer doesnt exist");
-                        }
-
-                        Console.WriteLine("press anykey to continue ...");
-                        Console.ReadLine();
+                        //End
+                    case 2: //Fetch
+                        int idtoFetch = CustomerView.GetCustomerId();                        
+                        Customer custToDisplay = CustomerOperation.FetchCustomer(idtoFetch); //Business Operation
+                        CustomerView.Display(custToDisplay); //Display View
                         break;
-                    case 3:
-                        Console.Clear();
-                        Console.Write("Enter Customer Id: ");
-                        idInput = Console.ReadLine();
-                        Console.Write("Enter Customer Name: ");
-                        name = Console.ReadLine();
-                        Console.Write("Enter Contact Number: ");
-                        contactNumber = Console.ReadLine();
-
-                        id = 0;
-                        Int32.TryParse(idInput, out id);
-
-                        cust = new Customer(id, name, contactNumber);
-
-                        if (cust != null)
+                    case 3: //Update
+                       Customer custToUpdate = CustomerView.Update();
+                        if (custToUpdate != null)
                         {
-                            CustomerOperation.UpdateCustomer(cust);
+                            CustomerOperation.UpdateCustomer(custToUpdate);
                             Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
                         }
                         else
@@ -273,13 +213,9 @@ namespace Session2
 
                         Console.ReadLine();
                         break;
-                    case 4:
-                        Console.Clear();
-                        Console.Write("Enter Customer Id: ");
-                        idInput = Console.ReadLine();
-                        id = 0;
-                        Int32.TryParse(idInput, out id);
-                        CustomerOperation.DeleteCustomer(id);
+                    case 4: //Delete
+                        int idToDelete = CustomerView.GetCustomerId();                        
+                        CustomerOperation.DeleteCustomer(idToDelete);
                         Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
                         Console.ReadLine();
                         break;
