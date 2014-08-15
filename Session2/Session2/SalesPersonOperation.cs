@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Session2
 {
-    class SalesPersonOperation
+    static class SalesPersonOperation
     {
-        public void CreateSalesPerson(SalesPerson salesPerson)
+        public static void CreateSalesPerson(SalesPerson salesPerson)
         {
             Repository.SalesPerson.Add(salesPerson);
         }
 
 
-        public SalesPerson FetchSalesPerson(int Id)
+        public static SalesPerson FetchSalesPerson(int Id)
         {
             return Repository.SalesPerson.Find(
                   sp => sp.Id == Id
               );
         }
 
-        public void UpdateSalesPerson(SalesPerson salesPerson)
+        public static void UpdateSalesPerson(SalesPerson salesPerson)
         {
             if (salesPerson == null) return;
 
@@ -35,9 +35,13 @@ namespace Session2
                 sp.Name= salesPerson.Name;
                 sp.ContactNumber= salesPerson.ContactNumber;
             }
+            else
+            {
+                Console.WriteLine("SalesPerson Not Available");
+            }
         }
 
-        public void DeleteSalesPerson(int Id)
+        public static void DeleteSalesPerson(int Id)
         {
             SalesPerson sp = Repository.SalesPerson.Find(
                     s => s.Id == Id
@@ -46,6 +50,10 @@ namespace Session2
             if (sp != null)
             {
                 Repository.SalesPerson.Remove(sp);
+            }
+            else
+            {
+                Console.WriteLine("SalesPerson Not Available");
             }
         }
 
