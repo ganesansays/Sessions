@@ -41,6 +41,7 @@ namespace Session2
                     case 3:
                         break;
                     case 4:
+                        HandleSalesInformation();
                         break;
                     case 5:
                         break;
@@ -53,6 +54,136 @@ namespace Session2
                         continue;
                 }
             }
+        }
+
+        private static void HandleSalesInformation()
+        {
+            string v_userMenuChoice;
+            int v_userChoice = 0;
+
+            int i_SalesID ;
+            int i_SalesPersonID ;
+            int i_CustomerID ;
+            int i_SalesProductID ;
+            int i_SalesQuantity ;
+            decimal i_SalesDiscount ;
+
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Choose the operation you would like to perform:");
+                Console.WriteLine("[1]: Create Sales");
+                Console.WriteLine("[2]: Retrieve Sales ");
+                Console.WriteLine("[3]: Update Sales");
+                Console.WriteLine("[4]: Delete Sales");
+                Console.WriteLine("[5]: Go to Main Menu");
+
+                v_userMenuChoice = Console.ReadLine();
+
+                if (!Int32.TryParse(v_userMenuChoice, out v_userChoice))
+                {
+                    Console.WriteLine("Please choose a valid option...");
+                }
+
+                switch (v_userChoice)
+                {
+                    case 1:
+                        Console.Clear();
+
+                        Console.Write("Enter Sales ID:");
+                        i_SalesID = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Person ID:");
+                        i_SalesPersonID = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Customer ID:");
+                        i_CustomerID = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Product ID:");
+                        i_SalesProductID = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Quantity:");
+                        i_SalesQuantity = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Discount:");
+                        i_SalesDiscount = Convert.ToDecimal(Console.ReadLine());
+
+                        Sale o_sales = new Sale(i_SalesID,i_SalesPersonID,i_CustomerID,i_SalesProductID,i_SalesQuantity,i_SalesDiscount);
+                        SalesOperations.CreateSale(o_sales);
+                        Console.WriteLine("Successful! Sales Added.Press any key to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case 2:
+                        Console.Clear();
+
+                        Console.Write("Enter Sales ID:");
+                        i_SalesID = Convert.ToInt32(Console.ReadLine());
+                        o_sales = SalesOperations.FetchSale(i_SalesID);
+
+                        if (o_sales != null)
+                        {
+                            Console.WriteLine("Sales ID : {0}", o_sales.Id);
+                            Console.WriteLine("Sales Person ID : {0}", o_sales.SalesPersonId);
+                            Console.WriteLine("Sales Customer ID : {0}", o_sales.CustomerId);
+                            Console.WriteLine("Sales Product ID : {0}", o_sales.ProductId);
+                            Console.WriteLine("Sales Quantity : {0}", o_sales.Quantity);
+                            Console.WriteLine("Sales Discount : {0}", o_sales.Discount);
+                        }
+                        else
+                        {
+                            Console.WriteLine("The mentioned sales id {0} does not exist", i_SalesID);
+                        }
+
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadLine();
+                        break;
+
+
+                    case 3:
+                        Console.Clear();
+
+                        Console.Write("Enter Sales ID:");
+                        i_SalesID = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Person ID:");
+                        i_SalesPersonID = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Customer ID:");
+                        i_CustomerID = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Product ID:");
+                        i_SalesProductID = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Quantity:");
+                        i_SalesQuantity = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("Enter Sales Discount:");
+                        i_SalesDiscount = Convert.ToDecimal(Console.ReadLine());
+
+                        o_sales = new Sale(i_SalesID,i_SalesPersonID,i_CustomerID,i_SalesProductID,i_SalesQuantity,i_SalesDiscount);
+                        SalesOperations.UpdateSale(o_sales);
+                        Console.WriteLine("Successful! Sales Updated.Press any key to continue...");
+                        Console.ReadLine();
+                        break;
+                    case 4:
+                        Console.Clear();
+
+                        Console.Write("Enter Sales ID:");
+                        i_SalesID = Convert.ToInt32(Console.ReadLine());
+                        
+                        SalesOperations.DeleteSale(i_SalesID);
+                        Console.WriteLine("Successful! Sales Deleted.Press any key to continue...");
+                        Console.ReadLine();
+                        break;
+
+                    case 5:
+                        return;
+                }
+            }
+
+
         }
 
         private static void HandleCustomerInformation()
