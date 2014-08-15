@@ -8,17 +8,17 @@ using BusinessEntities;
 
 namespace Session2
 {
-    class SalesOperations
+    static class SalesOperations
     {
-        public void CreateSale(Sale saleObj)
+        public static void CreateSale(Sale saleObj)
         {
             Repository.SaleList.Add(saleObj);
         }
-        public Sale FetchSale(int Id)
+        public static Sale FetchSale(int Id)
         {
             return Repository.SaleList.Find(tempSaleObj => tempSaleObj.Id == Id);
         }
-        public void UpdateSale(Sale saleObj)
+        public static void UpdateSale(Sale saleObj)
         {
             if (saleObj == null) return;
 
@@ -36,7 +36,7 @@ namespace Session2
             }
         }
 
-        public void DeleteSale(int Id)
+        public static void DeleteSale(int Id)
         {
             Sale saleObj = Repository.SaleList.Find(tempSaleObj => tempSaleObj.Id == Id);
 
