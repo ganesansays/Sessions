@@ -53,6 +53,10 @@ namespace Session2
             {
                 Repository.Customers.Remove(cust);
             }
+            else
+            {
+                Console.WriteLine("Customer doesnt exist ...");
+            }
         }
     }
 }
