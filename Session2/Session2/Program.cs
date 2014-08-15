@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessEntities;
 using Session2.View;
+using Session2.Controller;
+using Session2.Framework;
 
 namespace Session2
 {
@@ -12,39 +14,14 @@ namespace Session2
     {
         static void Main(string[] args)
         {
-            while (true)
+            Intent intent = null;
+
+            while (true) 
             {
-                Console.Clear();
+                IView view = MyFramework.handleRequest(intent);
+                intent = view.Display();
 
-                int choice = Home.Display();
-
-                //Customer, Create
-
-                switch (choice)
-                {
-                    case 1:
-                        HandleCustomerInformation();
-                        break;
-                    case 2:
-                        HandleProductInformation();
-                        break;
-                    case 3:
-                        HandleSalesPerson();
-                        break;
-                    case 4:
-                        HandleSalesInformation();
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        HandleBills();
-                        break;
-                    case 7:
-                        return;
-                    default:
-                        Console.WriteLine("Please enter a valid choice ...");
-                        continue;
-                }
+                if (intent.EntityToActOn == 7) return;
             }
         }
 
@@ -176,53 +153,6 @@ namespace Session2
             }
 
 
-        }
-
-        private static void HandleCustomerInformation() //CustomerController -> Create
-        {
-            while (true)
-            {
-                int choice = CustomerView.Display();
-
-                switch (choice) 
-                {
-                    case 1: //Create
-                        //Start
-                        Customer cust = CustomerView.Create(); //Display View
-                        CustomerOperation.CreateCustomer(cust); //Business Operation
-                        Console.WriteLine("Sucessfully created ... press anykey to continue ...");
-                        Console.ReadLine();
-                        break;
-                        //End
-                    case 2: //Fetch
-                        int idtoFetch = CustomerView.GetCustomerId();                        
-                        Customer custToDisplay = CustomerOperation.FetchCustomer(idtoFetch); //Business Operation
-                        CustomerView.Display(custToDisplay); //Display View
-                        break;
-                    case 3: //Update
-                       Customer custToUpdate = CustomerView.Update();
-                        if (custToUpdate != null)
-                        {
-                            CustomerOperation.UpdateCustomer(custToUpdate);
-                            Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Customer doesnt exist");
-                        }
-
-                        Console.ReadLine();
-                        break;
-                    case 4: //Delete
-                        int idToDelete = CustomerView.GetCustomerId();                        
-                        CustomerOperation.DeleteCustomer(idToDelete);
-                        Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
-                        Console.ReadLine();
-                        break;
-                    case 5:
-                        return;
-                }
-            }
         }
 
         private static void HandleProductInformation()
@@ -661,7 +591,6 @@ namespace Session2
             }
 
         }
-
     }
 }
         

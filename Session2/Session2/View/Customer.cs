@@ -1,4 +1,5 @@
 ﻿using BusinessEntities;
+using Session2.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,90 +8,49 @@ using System.Threading.Tasks;
 
 namespace Session2.View
 {
-    class CustomerView
+    class CustomerView : IView
     {
-        public static int Display()
-        {
-            while(true) 
-            {
-                Console.Clear();
-                Console.WriteLine("What operation you want to perform?");
-                Console.WriteLine("[1]: Create");
-                Console.WriteLine("[2]: Fetch");
-                Console.WriteLine("[3]: Update");
-                Console.WriteLine("[4]: Delete");
-                Console.WriteLine("[5]: Go to main menu");
+        Customer customer = null;
 
-                string choiceString = Console.ReadLine();
-                int choice = 0;
-                if (!Int32.TryParse(choiceString, out choice))
-                {
-                    Console.WriteLine("Please enter a valid choice ...");
-                    continue;
-                }
-                return choice;
-            }
+        public CustomerView()
+        {
+
         }
 
-        public static Customer Create()
+        public CustomerView(object param)
+        {
+            customer = param as Customer;
+        }
+
+        public Intent Display()
         {
             Console.Clear();
-            Console.Write("Enter Customer Id: ");
-            string idInput = Console.ReadLine();
+            int id = 0;
+
+            if (customer != null)
+            {
+                Console.WriteLine("This is an existing customer. Name: " + customer.Name);
+                id = customer.Id;
+            }
+            else 
+            {
+                Console.Write("Enter Customer Id: ");
+                string idInput = Console.ReadLine();
+                Int32.TryParse(idInput, out id);
+            }
             Console.Write("Enter Customer Name: ");
             string name = Console.ReadLine();
             Console.Write("Enter Contact Number: ");
             string contactNumber = Console.ReadLine();
 
-            int id = 0;
-            Int32.TryParse(idInput, out id);
-
             Customer cust = new Customer(id, name, contactNumber);
+            
+            Intent intent = new Intent();
+            intent.EntityToActOn = Intent.CUSTOMER_ENTITY;
+            intent.OperationToPerform = Intent.SAVE;
+            intent.Param = cust as object;
 
-            return cust;
-        }
-
-        public static void Display(Customer cust)
-        {
-            if (cust != null)
-            {
-                Console.WriteLine(cust.Name);
-            }
-            else
-            {
-                Console.WriteLine("Customer doesnt exist");
-            }
-
-            Console.WriteLine("press anykey to continue ...");
-            Console.ReadLine();
-        }
-
-        public static int GetCustomerId()
-        {
-            Console.Clear();
-            Console.Write("Enter Customer Id: ");
-            string idInput = Console.ReadLine();
-            int id = 0;
-            Int32.TryParse(idInput, out id);
-
-            return id;
-        }
-
-        public static Customer Update()
-        {
-            Console.Clear();
-            Console.Write("Enter Customer Id: ");
-            string idInput = Console.ReadLine();
-            Console.Write("Enter Customer Name: ");
-            string name = Console.ReadLine();
-            Console.Write("Enter Contact Number: ");
-            string contactNumber = Console.ReadLine();
-
-            int id = 0;
-            Int32.TryParse(idInput, out id);
-
-            Customer cust = new Customer(id, name, contactNumber);
-            return cust;
+            return intent;
         }
     }
 }
