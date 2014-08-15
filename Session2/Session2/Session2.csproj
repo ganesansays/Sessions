@@ -50,8 +50,10 @@
     <Compile Include="Repository.cs" />
     <Compile Include="SalesOperations.cs" />
     <Compile Include="SalesPersonOperation.cs" />
+    <Compile Include="View\BillView.cs" />
     <Compile Include="View\Customer.cs" />
     <Compile Include="View\Home.cs" />
+    <Compile Include="View\ProductView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

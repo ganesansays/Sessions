@@ -229,84 +229,27 @@ namespace Session2
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("What operation you want to perform?");
-                Console.WriteLine("[1]: Create");
-                Console.WriteLine("[2]: Fetch");
-                Console.WriteLine("[3]: Update");
-                Console.WriteLine("[4]: Delete");
-                Console.WriteLine("[5]: Go to main menu");
-
-                string choiceString = Console.ReadLine();
-                int choice = 0;
-                if (!Int32.TryParse(choiceString, out choice))
-                {
-                    Console.WriteLine("Please enter a valid choice ...");
-                }
+                int choice = CustomerView.Display();
 
                 switch (choice)
                 {
                     case 1:
-                        Console.Clear();
-                        Console.Write("Enter Product Id: ");
-                        string idInput = Console.ReadLine();
-                        Console.Write("Enter Product Name: ");
-                        string name = Console.ReadLine();
-                        Console.Write("Enter Product Rate: ");
-                        string rateinput = Console.ReadLine();
-
-                        int id = 0;
-                        Int32.TryParse(idInput, out id);
-
-                        decimal rate = 0.00M;
-                        decimal.TryParse(rateinput, out rate);
-
-                        Product Prod = new Product(id, name, rate);
-
-                        ProductOperation.CreateProduct(Prod);
-
+                        Product ProdtoAdd = ProductView.Create();
+                        ProductOperation.CreateProduct(ProdtoAdd);
                         Console.WriteLine("Sucessfully created ... press anykey to continue ...");
                         Console.ReadLine();
                         break;
                     case 2:
-                        Console.Clear();
-                        Console.Write("Enter Product Id: ");
-                        idInput = Console.ReadLine();
-                        id = 0;
-                        Int32.TryParse(idInput, out id);
-                        Prod = ProductOperation.FetchProduct(id);
-
-                        if (Prod != null)
-                        {
-                            Console.WriteLine(Prod.Name);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Product doesnt exist");
-                        }
-
-                        Console.WriteLine("press anykey to continue ...");
-                        Console.ReadLine();
+                        int idtoFetch = ProductView.GetProductId();
+                        Product ProdtoFetch = ProductOperation.FetchProduct(idtoFetch);
+                        ProductView.DisplayProduct(ProdtoFetch);
                         break;
                     case 3:
-                        Console.Clear();
-                        Console.Write("Enter Product Id: ");
-                        idInput = Console.ReadLine();
-                        Console.Write("Enter Product Name: ");
-                        name = Console.ReadLine();
-                        Console.Write("Enter Product Rate: ");
-                        rateinput = Console.ReadLine();
 
-                        id = 0;
-                        Int32.TryParse(idInput, out id);
-
-                        rate = 0.00M;
-                        decimal.TryParse(rateinput, out rate);
-                        Prod = new Product(id, name, rate);
-
-                        if (Prod != null)
+                        Product ProdtoUpdate = ProductView.UpdateProduct();
+                        if (ProdtoUpdate != null)
                         {
-                            ProductOperation.UpdateProduct(Prod);
+                            ProductOperation.UpdateProduct(ProdtoUpdate);
                             Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
                         }
                         else
@@ -317,12 +260,8 @@ namespace Session2
                         Console.ReadLine();
                         break;
                     case 4:
-                        Console.Clear();
-                        Console.Write("Enter Product Id: ");
-                        idInput = Console.ReadLine();
-                        id = 0;
-                        Int32.TryParse(idInput, out id);
-                        ProductOperation.DeleteProduct(id);
+                        int prodidtodelete = ProductView.GetProductId();
+                        ProductOperation.DeleteProduct(prodidtodelete);
                         Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
                         Console.ReadLine();
                         break;
@@ -446,73 +385,16 @@ namespace Session2
             while (true)
             {
 
-                Console.Clear();
-
-                Console.WriteLine("What operation you want to perform?");
-
-                Console.WriteLine("[1]: Create");
-
-                Console.WriteLine("[2]: Fetch");
-
-                Console.WriteLine("[3]: Update");
-
-                Console.WriteLine("[4]: Delete");
-
-                Console.WriteLine("[5]: Go to main menu");
-
-                string choiceString = Console.ReadLine();
-
-                int choice = 0;
-
-                if (!Int32.TryParse(choiceString, out choice))
-                {
-
-                    Console.WriteLine("Please enter a valid choice ...");
-
-                }
+                int choice = CustomerView.Display();
 
                 switch (choice)
                 {
 
                     case 1:
 
-                        Console.Clear();
+                        Bill BilltoCreate = BillView.CreateBill();
 
-                        Console.Write("Enter Bill Id: ");
-
-                        string idInput = Console.ReadLine();
-
-                        Console.Write("Enter Invoice Id: ");
-
-                        string invoiceidInput = Console.ReadLine();
-
-                        Console.Write("Enter Customer Id: ");
-
-                        string customeridInput = Console.ReadLine();
-
-                        Console.Write("Enter Amount Paid: ");
-
-                        string amountpaidinput = Console.ReadLine();
-
-                        int id = 0;
-
-                        Int32.TryParse(idInput, out id);
-
-                        int invoiceid = 0;
-
-                        Int32.TryParse(invoiceidInput, out invoiceid);
-
-                        int customerid = 0;
-
-                        Int32.TryParse(customeridInput, out customerid);
-
-                        decimal amountpaid = 0.00M;
-
-                        decimal.TryParse(amountpaidinput, out amountpaid);
-
-                        Bill transbill = new Bill(id, invoiceid, customerid, amountpaid);
-
-                        BillOperations.CreateBill(transbill);
+                        BillOperations.CreateBill(BilltoCreate);
 
                         Console.WriteLine("Sucessfully created ... press anykey to continue ...");
 
@@ -522,98 +404,22 @@ namespace Session2
 
                     case 2:
 
-                        Console.Clear();
+                        int idtoFetch = BillView.GetBillId();
 
-                        Console.Write("Enter Bill Id: ");
+                        Bill BilltoFetch = BillOperations.FetchBill(idtoFetch);
 
-                        idInput =
-
-                        Console.ReadLine();
-
-                        id = 0;
-
-                        Int32.TryParse(idInput, out id);
-
-                        transbill =
-
-                        BillOperations.FetchBill(id);
-
-                        if (transbill != null)
-                        {
-
-                            Console.WriteLine("Customer Id: " + transbill.CustomerId);
-
-                            Console.WriteLine("Invoice Id: " + transbill.InvoiceId);
-
-                            Console.WriteLine("Amount Paid: " + transbill.AmountPaid);
-
-                        }
-
-                        else
-                        {
-
-                            Console.WriteLine("Bill Id doesnt exist");
-
-                        }
-
-                        Console.WriteLine("press anykey to continue ...");
-
-                        Console.ReadLine();
+                        BillView.DisplayBill(BilltoFetch);
 
                         break;
 
                     case 3:
 
-                        Console.Clear();
+                        Bill BilltoUpdate = BillView.UpdateBill();
 
-                        Console.Write("Enter Bill Id: ");
-
-                        idInput =
-
-                        Console.ReadLine();
-
-                        Console.Write("Enter Invoice Id: ");
-
-                        invoiceidInput =
-
-                        Console.ReadLine();
-
-                        Console.Write("Enter Customer Id: ");
-
-                        customeridInput =
-
-                        Console.ReadLine();
-
-                        Console.Write("Enter Amount Paid: ");
-
-                        amountpaidinput =
-
-                        Console.ReadLine();
-
-                        id = 0;
-
-                        Int32.TryParse(idInput, out id);
-
-                        invoiceid = 0;
-
-                        Int32.TryParse(invoiceidInput, out invoiceid);
-
-                        customerid = 0;
-
-                        Int32.TryParse(customeridInput, out customerid);
-
-                        amountpaid = 0.00M;
-
-                        decimal.TryParse(amountpaidinput, out amountpaid);
-
-                        transbill =
-
-                        new Bill(id, invoiceid, customerid, amountpaid);
-
-                        if (transbill != null)
+                        if (BilltoUpdate!= null)
                         {
 
-                            BillOperations.UpdateBill(transbill);
+                            BillOperations.UpdateBill(BilltoUpdate);
 
                             Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
 
@@ -632,19 +438,9 @@ namespace Session2
 
                     case 4:
 
-                        Console.Clear();
+                        int billidtodelete = BillView.GetBillId();
 
-                        Console.Write("Enter Bill Id: ");
-
-                        idInput =
-
-                        Console.ReadLine();
-
-                        id = 0;
-
-                        Int32.TryParse(idInput, out id);
-
-                        BillOperations.DeleteBill(id);
+                        BillOperations.DeleteBill(billidtodelete);
 
                         Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
 
