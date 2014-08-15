@@ -52,6 +52,7 @@
     <Compile Include="SalesPersonOperation.cs" />
     <Compile Include="View\Customer.cs" />
     <Compile Include="View\Home.cs" />
+    <Compile Include="View\SaleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
