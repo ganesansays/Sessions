@@ -15,7 +15,7 @@ namespace BusinessEntities
         public int Quantity { get; set; }
         public decimal Discount { get; set; }
 
-        public Sale(int Id, int SalesPersonId, int CustomerId, int ProductId, int Quantity, int Discount)
+        public Sale(int Id, int SalesPersonId, int CustomerId, int ProductId, int Quantity, decimal Discount)
         {
             this.Id = Id;
             this.SalesPersonId = SalesPersonId;
