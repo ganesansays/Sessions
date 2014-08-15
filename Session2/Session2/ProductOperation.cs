@@ -9,19 +9,19 @@ namespace Session2
 {
     class ProductOperation
     {
-        public void CreateProduct(Product product)
+        public static void CreateProduct(Product product)
         {
             Repository.Products.Add(product);
         }
 
-        public Product FetchProduct(int Id)
+        public static Product FetchProduct(int Id)
         {
             return Repository.Products.Find(
                   prod => prod.Id == Id
               );
         }
 
-        public void UpdateProduct(Product product)
+        public static void UpdateProduct(Product product)
         {
             if (product == null) return;
 
@@ -36,7 +36,7 @@ namespace Session2
             }
         }
 
-        public void DeleteProduct(int Id)
+        public static void DeleteProduct(int Id)
         {
             Product prod = Repository.Products.Find(
                     p => p.Id == Id
