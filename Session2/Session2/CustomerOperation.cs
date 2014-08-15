@@ -16,13 +16,6 @@ namespace Session2
 
         public static Customer FetchCustomer(int Id)
         {
-            /*for (int i = 0; i < Customers.Count; i++)
-            {
-                Customer cust = Customers[i];
-
-                if (cust.Id == Id) return cust;
-            }*/
-
             return Repository.Customers.Find(
                     cust => cust.Id == Id
                 );

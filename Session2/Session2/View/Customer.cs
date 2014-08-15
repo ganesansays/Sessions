@@ -11,10 +11,16 @@ namespace Session2.View
     class CustomerView : IView
     {
         Customer customer = null;
+        string Message = string.Empty;
 
         public CustomerView()
         {
 
+        }
+
+        public CustomerView(string Message)
+        {
+            this.Message = Message;
         }
 
         public CustomerView(object param)
@@ -26,6 +32,13 @@ namespace Session2.View
         {
             Console.Clear();
             int id = 0;
+
+            if (!string.IsNullOrEmpty(Message))
+            {
+                Console.WriteLine(Message);
+                Console.WriteLine("Press enter to continue...");
+                Console.ReadLine();
+            }
 
             if (customer != null)
             {
