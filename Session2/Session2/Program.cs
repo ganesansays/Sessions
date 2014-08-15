@@ -37,6 +37,7 @@ namespace Session2
                         HandleCustomerInformation();
                         break;
                     case 2:
+                        HandleProductInformation();
                         break;
                     case 3:
                         break;
@@ -146,6 +147,113 @@ namespace Session2
                         id = 0;
                         Int32.TryParse(idInput, out id);
                         CustomerOperation.DeleteCustomer(id);
+                        Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
+                        Console.ReadLine();
+                        break;
+                    case 5:
+                        return;
+                }
+            }
+        }
+
+        private static void HandleProductInformation()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("What operation you want to perform?");
+                Console.WriteLine("[1]: Create");
+                Console.WriteLine("[2]: Fetch");
+                Console.WriteLine("[3]: Update");
+                Console.WriteLine("[4]: Delete");
+                Console.WriteLine("[5]: Go to main menu");
+
+                string choiceString = Console.ReadLine();
+                int choice = 0;
+                if (!Int32.TryParse(choiceString, out choice))
+                {
+                    Console.WriteLine("Please enter a valid choice ...");
+                }
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.Clear();
+                        Console.Write("Enter Product Id: ");
+                        string idInput = Console.ReadLine();
+                        Console.Write("Enter Product Name: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Enter Product Rate: ");
+                        string rateinput = Console.ReadLine();
+
+                        int id = 0;
+                        Int32.TryParse(idInput, out id);
+
+                        decimal rate = 0.00M;
+                        decimal.TryParse(rateinput, out rate);
+
+                        Product Prod = new Product(id, name, rate);
+                        
+                        ProductOperation.CreateProduct(Prod);
+
+                        Console.WriteLine("Sucessfully created ... press anykey to continue ...");
+                        Console.ReadLine();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Console.Write("Enter Product Id: ");
+                        idInput = Console.ReadLine();
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+                        Prod = ProductOperation.FetchProduct(id);
+
+                        if (Prod != null)
+                        {
+                            Console.WriteLine(Prod.Name);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Product doesnt exist");
+                        }
+
+                        Console.WriteLine("press anykey to continue ...");
+                        Console.ReadLine();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        Console.Write("Enter Product Id: ");
+                        idInput = Console.ReadLine();
+                        Console.Write("Enter Product Name: ");
+                        name = Console.ReadLine();
+                        Console.Write("Enter Product Rate: ");
+                        rateinput = Console.ReadLine();
+
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+
+                        rate = 0.00M;
+                        decimal.TryParse(rateinput, out rate);
+                        Prod = new Product(id, name, rate);
+
+                        if (Prod != null)
+                        {
+                            ProductOperation.UpdateProduct(Prod);
+                            Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Product doesnt exist");
+                        }
+
+                        Console.ReadLine();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        Console.Write("Enter Product Id: ");
+                        idInput = Console.ReadLine();
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+                        ProductOperation.DeleteProduct(id);
                         Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
                         Console.ReadLine();
                         break;
