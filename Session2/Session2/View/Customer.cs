@@ -51,16 +51,15 @@ namespace Session2.View
                 string idInput = Console.ReadLine();
                 Int32.TryParse(idInput, out id);
             }
+
             Console.Write("Enter Customer Name: ");
             string name = Console.ReadLine();
             Console.Write("Enter Contact Number: ");
             string contactNumber = Console.ReadLine();
 
             Customer cust = new Customer(id, name, contactNumber);
-            
-            Intent intent = new Intent();
-            intent.EntityToActOn = Intent.CUSTOMER_ENTITY;
-            intent.OperationToPerform = Intent.SAVE;
+
+            Intent intent = new Intent(Intent.CUSTOMER_ENTITY, Intent.SAVE);
             intent.Param = cust as object;
 
             return intent;

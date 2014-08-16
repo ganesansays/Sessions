@@ -89,9 +89,7 @@ namespace Session2.View
                 }
             }
 
-            Intent intent = new Intent();
-            intent.EntityToActOn = entityToActOn;
-            intent.OperationToPerform = operationToPerform;
+            Intent intent = new Intent(entityToActOn, operationToPerform);
             intent.IdToActOn = idToActOn;
 
             return intent;

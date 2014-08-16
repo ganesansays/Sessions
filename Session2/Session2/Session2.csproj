@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BillOperations.cs" />
     <Compile Include="Controller\CustomerController.cs" />
+    <Compile Include="Controller\HomeController.cs" />
     <Compile Include="CustomerOperation.cs" />
     <Compile Include="Framework\Framework.cs" />
     <Compile Include="ProductOperation.cs" />

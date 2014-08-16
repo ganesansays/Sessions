@@ -13,6 +13,12 @@ namespace Session2.View
         public object Param { get; set; }
         public int IdToActOn { get; set; }
 
+        public Intent(int EntityToActOn, int OperationToPerform)
+        {
+            this.EntityToActOn = EntityToActOn;
+            this.OperationToPerform = OperationToPerform;
+        }
+
         public static int CUSTOMER_ENTITY = 1;
         public static int PRODUCT_ENTITY = 2;
         public static int SALES_PERSON_ENTITY = 3;

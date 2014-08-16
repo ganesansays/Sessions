@@ -22,16 +22,12 @@ namespace Session2.Framework
     {
         public static IView handleRequest(Intent intent)
         {
-            if (intent == null || intent.EntityToActOn == 0)
-            {
-                return new HomeView();
-            }
-
+            IController controller = null;
             switch (intent.EntityToActOn)
             {
                 case 1:
-                    IController controller = new CustomerController();
-                    return controller.handleIntent(intent);
+                    controller = new CustomerController();
+                    break;
                 case 2:
                     break;
                 case 3:
@@ -41,10 +37,11 @@ namespace Session2.Framework
                 case 5:
                     break;
                 default:
+                    controller = new HomeController();
                     break;
             }
 
-            return null;
+            return controller.handleIntent(intent);
         }
     }
 }

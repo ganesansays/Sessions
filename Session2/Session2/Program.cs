@@ -14,7 +14,7 @@ namespace Session2
     {
         static void Main(string[] args)
         {
-            Intent intent = null;
+            Intent intent = new Intent(0, 0);
 
             while (true) 
             {
