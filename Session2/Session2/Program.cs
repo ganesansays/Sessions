@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessEntities;
 using Session2.View;
+using Session2.Controller;
+using Session2.Framework;
 
 namespace Session2
 {
@@ -12,39 +14,14 @@ namespace Session2
     {
         static void Main(string[] args)
         {
-            while (true)
+            Intent intent = new Intent(0, 0);
+
+            while (true) 
             {
-                Console.Clear();
+                IView view = MyFramework.handleRequest(intent);
+                intent = view.Display();
 
-                int choice = Home.Display();
-
-                //Customer, Create
-
-                switch (choice)
-                {
-                    case 1:
-                        HandleCustomerInformation();
-                        break;
-                    case 2:
-                        HandleProductInformation();
-                        break;
-                    case 3:
-                        HandleSalesPerson();
-                        break;
-                    case 4:
-                        HandleSalesInformation();
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        HandleBills();
-                        break;
-                    case 7:
-                        return;
-                    default:
-                        Console.WriteLine("Please enter a valid choice ...");
-                        continue;
-                }
+                if (intent.EntityToActOn == 7) return;
             }
         }
 
@@ -178,78 +155,88 @@ namespace Session2
 
         }
 
-        private static void HandleCustomerInformation() //CustomerController -> Create
-        {
-            while (true)
-            {
-                int choice = CustomerView.Display();
-
-                switch (choice) 
-                {
-                    case 1: //Create
-                        //Start
-                        Customer cust = CustomerView.Create(); //Display View
-                        CustomerOperation.CreateCustomer(cust); //Business Operation
-                        Console.WriteLine("Sucessfully created ... press anykey to continue ...");
-                        Console.ReadLine();
-                        break;
-                        //End
-                    case 2: //Fetch
-                        int idtoFetch = CustomerView.GetCustomerId();                        
-                        Customer custToDisplay = CustomerOperation.FetchCustomer(idtoFetch); //Business Operation
-                        CustomerView.Display(custToDisplay); //Display View
-                        break;
-                    case 3: //Update
-                       Customer custToUpdate = CustomerView.Update();
-                        if (custToUpdate != null)
-                        {
-                            CustomerOperation.UpdateCustomer(custToUpdate);
-                            Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Customer doesnt exist");
-                        }
-
-                        Console.ReadLine();
-                        break;
-                    case 4: //Delete
-                        int idToDelete = CustomerView.GetCustomerId();                        
-                        CustomerOperation.DeleteCustomer(idToDelete);
-                        Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
-                        Console.ReadLine();
-                        break;
-                    case 5:
-                        return;
-                }
-            }
-        }
-
         private static void HandleProductInformation()
         {
             while (true)
             {
-                int choice = CustomerView.Display();
+                Console.Clear();
+                Console.WriteLine("What operation you want to perform?");
+                Console.WriteLine("[1]: Create");
+                Console.WriteLine("[2]: Fetch");
+                Console.WriteLine("[3]: Update");
+                Console.WriteLine("[4]: Delete");
+                Console.WriteLine("[5]: Go to main menu");
+
+                string choiceString = Console.ReadLine();
+                int choice = 0;
+                if (!Int32.TryParse(choiceString, out choice))
+                {
+                    Console.WriteLine("Please enter a valid choice ...");
+                }
 
                 switch (choice)
                 {
                     case 1:
-                        Product ProdtoAdd = ProductView.Create();
-                        ProductOperation.CreateProduct(ProdtoAdd);
+                        Console.Clear();
+                        Console.Write("Enter Product Id: ");
+                        string idInput = Console.ReadLine();
+                        Console.Write("Enter Product Name: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Enter Product Rate: ");
+                        string rateinput = Console.ReadLine();
+
+                        int id = 0;
+                        Int32.TryParse(idInput, out id);
+
+                        decimal rate = 0.00M;
+                        decimal.TryParse(rateinput, out rate);
+
+                        Product Prod = new Product(id, name, rate);
+
+                        ProductOperation.CreateProduct(Prod);
+
                         Console.WriteLine("Sucessfully created ... press anykey to continue ...");
                         Console.ReadLine();
                         break;
                     case 2:
-                        int idtoFetch = ProductView.GetProductId();
-                        Product ProdtoFetch = ProductOperation.FetchProduct(idtoFetch);
-                        ProductView.DisplayProduct(ProdtoFetch);
+                        Console.Clear();
+                        Console.Write("Enter Product Id: ");
+                        idInput = Console.ReadLine();
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+                        Prod = ProductOperation.FetchProduct(id);
+
+                        if (Prod != null)
+                        {
+                            Console.WriteLine(Prod.Name);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Product doesnt exist");
+                        }
+
+                        Console.WriteLine("press anykey to continue ...");
+                        Console.ReadLine();
                         break;
                     case 3:
+                        Console.Clear();
+                        Console.Write("Enter Product Id: ");
+                        idInput = Console.ReadLine();
+                        Console.Write("Enter Product Name: ");
+                        name = Console.ReadLine();
+                        Console.Write("Enter Product Rate: ");
+                        rateinput = Console.ReadLine();
 
-                        Product ProdtoUpdate = ProductView.UpdateProduct();
-                        if (ProdtoUpdate != null)
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+
+                        rate = 0.00M;
+                        decimal.TryParse(rateinput, out rate);
+                        Prod = new Product(id, name, rate);
+
+                        if (Prod != null)
                         {
-                            ProductOperation.UpdateProduct(ProdtoUpdate);
+                            ProductOperation.UpdateProduct(Prod);
                             Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
                         }
                         else
@@ -260,8 +247,12 @@ namespace Session2
                         Console.ReadLine();
                         break;
                     case 4:
-                        int prodidtodelete = ProductView.GetProductId();
-                        ProductOperation.DeleteProduct(prodidtodelete);
+                        Console.Clear();
+                        Console.Write("Enter Product Id: ");
+                        idInput = Console.ReadLine();
+                        id = 0;
+                        Int32.TryParse(idInput, out id);
+                        ProductOperation.DeleteProduct(id);
                         Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
                         Console.ReadLine();
                         break;
@@ -385,16 +376,73 @@ namespace Session2
             while (true)
             {
 
-                int choice = CustomerView.Display();
+                Console.Clear();
+
+                Console.WriteLine("What operation you want to perform?");
+
+                Console.WriteLine("[1]: Create");
+
+                Console.WriteLine("[2]: Fetch");
+
+                Console.WriteLine("[3]: Update");
+
+                Console.WriteLine("[4]: Delete");
+
+                Console.WriteLine("[5]: Go to main menu");
+
+                string choiceString = Console.ReadLine();
+
+                int choice = 0;
+
+                if (!Int32.TryParse(choiceString, out choice))
+                {
+
+                    Console.WriteLine("Please enter a valid choice ...");
+
+                }
 
                 switch (choice)
                 {
 
                     case 1:
 
-                        Bill BilltoCreate = BillView.CreateBill();
+                        Console.Clear();
 
-                        BillOperations.CreateBill(BilltoCreate);
+                        Console.Write("Enter Bill Id: ");
+
+                        string idInput = Console.ReadLine();
+
+                        Console.Write("Enter Invoice Id: ");
+
+                        string invoiceidInput = Console.ReadLine();
+
+                        Console.Write("Enter Customer Id: ");
+
+                        string customeridInput = Console.ReadLine();
+
+                        Console.Write("Enter Amount Paid: ");
+
+                        string amountpaidinput = Console.ReadLine();
+
+                        int id = 0;
+
+                        Int32.TryParse(idInput, out id);
+
+                        int invoiceid = 0;
+
+                        Int32.TryParse(invoiceidInput, out invoiceid);
+
+                        int customerid = 0;
+
+                        Int32.TryParse(customeridInput, out customerid);
+
+                        decimal amountpaid = 0.00M;
+
+                        decimal.TryParse(amountpaidinput, out amountpaid);
+
+                        Bill transbill = new Bill(id, invoiceid, customerid, amountpaid);
+
+                        BillOperations.CreateBill(transbill);
 
                         Console.WriteLine("Sucessfully created ... press anykey to continue ...");
 
@@ -404,22 +452,98 @@ namespace Session2
 
                     case 2:
 
-                        int idtoFetch = BillView.GetBillId();
+                        Console.Clear();
 
-                        Bill BilltoFetch = BillOperations.FetchBill(idtoFetch);
+                        Console.Write("Enter Bill Id: ");
 
-                        BillView.DisplayBill(BilltoFetch);
+                        idInput =
+
+                        Console.ReadLine();
+
+                        id = 0;
+
+                        Int32.TryParse(idInput, out id);
+
+                        transbill =
+
+                        BillOperations.FetchBill(id);
+
+                        if (transbill != null)
+                        {
+
+                            Console.WriteLine("Customer Id: " + transbill.CustomerId);
+
+                            Console.WriteLine("Invoice Id: " + transbill.InvoiceId);
+
+                            Console.WriteLine("Amount Paid: " + transbill.AmountPaid);
+
+                        }
+
+                        else
+                        {
+
+                            Console.WriteLine("Bill Id doesnt exist");
+
+                        }
+
+                        Console.WriteLine("press anykey to continue ...");
+
+                        Console.ReadLine();
 
                         break;
 
                     case 3:
 
-                        Bill BilltoUpdate = BillView.UpdateBill();
+                        Console.Clear();
 
-                        if (BilltoUpdate!= null)
+                        Console.Write("Enter Bill Id: ");
+
+                        idInput =
+
+                        Console.ReadLine();
+
+                        Console.Write("Enter Invoice Id: ");
+
+                        invoiceidInput =
+
+                        Console.ReadLine();
+
+                        Console.Write("Enter Customer Id: ");
+
+                        customeridInput =
+
+                        Console.ReadLine();
+
+                        Console.Write("Enter Amount Paid: ");
+
+                        amountpaidinput =
+
+                        Console.ReadLine();
+
+                        id = 0;
+
+                        Int32.TryParse(idInput, out id);
+
+                        invoiceid = 0;
+
+                        Int32.TryParse(invoiceidInput, out invoiceid);
+
+                        customerid = 0;
+
+                        Int32.TryParse(customeridInput, out customerid);
+
+                        amountpaid = 0.00M;
+
+                        decimal.TryParse(amountpaidinput, out amountpaid);
+
+                        transbill =
+
+                        new Bill(id, invoiceid, customerid, amountpaid);
+
+                        if (transbill != null)
                         {
 
-                            BillOperations.UpdateBill(BilltoUpdate);
+                            BillOperations.UpdateBill(transbill);
 
                             Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
 
@@ -438,9 +562,19 @@ namespace Session2
 
                     case 4:
 
-                        int billidtodelete = BillView.GetBillId();
+                        Console.Clear();
 
-                        BillOperations.DeleteBill(billidtodelete);
+                        Console.Write("Enter Bill Id: ");
+
+                        idInput =
+
+                        Console.ReadLine();
+
+                        id = 0;
+
+                        Int32.TryParse(idInput, out id);
+
+                        BillOperations.DeleteBill(id);
 
                         Console.WriteLine("Sucessfully deleted ... press anykey to continue ...");
 
@@ -457,7 +591,6 @@ namespace Session2
             }
 
         }
-
     }
 }
         
