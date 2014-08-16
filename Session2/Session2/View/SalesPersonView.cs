@@ -76,18 +76,13 @@ namespace Session2.View
             return id;
         }
 
-        public static SalesPerson Update()
+        public static SalesPerson Update(int id)
         {
             Console.Clear();
-            Console.Write("Enter SalesPerson Id: ");
-            string idInput = Console.ReadLine();
             Console.Write("Enter Sales Person Name: ");
             string name = Console.ReadLine();
             Console.Write("Enter Sales Person Contact Number: ");
             string contactNumber = Console.ReadLine();
-
-            int id = 0;
-            Int32.TryParse(idInput, out id);
 
             SalesPerson salesPersonObj = new SalesPerson(id, name, contactNumber);
             return salesPersonObj;
