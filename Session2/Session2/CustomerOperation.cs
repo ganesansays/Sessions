@@ -16,14 +16,21 @@ namespace Session2
 
         public static Customer FetchCustomer(int Id)
         {
+            /*for (int i = 0; i < Customers.Count; i++)
+            {
+                Customer cust = Customers[i];
+
+                if (cust.Id == Id) return cust;
+            }*/
+
             return Repository.Customers.Find(
                     cust => cust.Id == Id
                 );
         }
 
-        public static string UpdateCustomer(Customer customer)
+        public static void UpdateCustomer(Customer customer)
         {
-            if (customer == null) return "Customer does not exist";
+            if (customer == null) return;
 
             Customer cust = Repository.Customers.Find(
                     c => c.Id == customer.Id
@@ -33,16 +40,10 @@ namespace Session2
             {
                 cust.Name = customer.Name;
                 cust.ContactNumber = customer.ContactNumber;
-                return "Customer updated ...";
-            }
-            else
-            {
-                Repository.Customers.Add(customer);
-                return "Customer added ...";
             }
         }
 
-        public static string DeleteCustomer(int Id)
+        public static void DeleteCustomer(int Id)
         {
             Customer cust = Repository.Customers.Find(
                     c => c.Id == Id
@@ -51,11 +52,10 @@ namespace Session2
             if (cust != null)
             {
                 Repository.Customers.Remove(cust);
-                return ("Customer delete successfully ...");
             }
             else
             {
-                return("Customer doesnt exist ...");
+                Console.WriteLine("Customer doesnt exist ...");
             }
         }
     }
