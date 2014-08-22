@@ -44,6 +44,7 @@
     <Compile Include="BillOperations.cs" />
     <Compile Include="Controller\CustomerController.cs" />
     <Compile Include="Controller\HomeController.cs" />
+    <Compile Include="Controller\ProductController.cs" />
     <Compile Include="CustomerOperation.cs" />
     <Compile Include="Framework\Framework.cs" />
     <Compile Include="ProductOperation.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="View\Customer.cs" />
     <Compile Include="View\Home.cs" />
     <Compile Include="View\Intent.cs" />
+    <Compile Include="View\ProductView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

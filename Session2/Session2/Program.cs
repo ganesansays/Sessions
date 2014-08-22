@@ -236,7 +236,7 @@ namespace Session2
 
                         if (Prod != null)
                         {
-                            ProductOperation.UpdateProduct(Prod);
+                            ProductOperation.CreateProduct(Prod);
                             Console.WriteLine("Sucessfully updated ... press anykey to continue ...");
                         }
                         else

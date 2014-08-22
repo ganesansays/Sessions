@@ -29,6 +29,7 @@ namespace Session2.Framework
                     controller = new CustomerController();
                     break;
                 case 2:
+                    controller = new ProductController();
                     break;
                 case 3:
                     break;

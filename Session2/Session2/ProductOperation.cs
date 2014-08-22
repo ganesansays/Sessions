@@ -9,21 +9,9 @@ namespace Session2
 {
     class ProductOperation
     {
-        public static void CreateProduct(Product product)
+        public static string CreateProduct(Product product)
         {
-            Repository.Products.Add(product);
-        }
-
-        public static Product FetchProduct(int Id)
-        {
-            return Repository.Products.Find(
-                  prod => prod.Id == Id
-              );
-        }
-
-        public static void UpdateProduct(Product product)
-        {
-            if (product == null) return;
+            if (product == null) return ("Error: No product available!!!");
 
             Product prod = Repository.Products.Find(
                     c => c.Id == product.Id
@@ -33,8 +21,26 @@ namespace Session2
             {
                 prod.Name = product.Name;
                 prod.Rate = product.Rate;
+                return ("Product is updated!!!");
+            }
+            else
+            { 
+                Repository.Products.Add(product);
+                return ("Product is added!!!");
             }
         }
+
+        public static Product FetchProduct(int Id)
+        {
+            return Repository.Products.Find(
+                  prod => prod.Id == Id
+              );
+        }
+
+        /*public static void UpdateProduct(Product product)
+        {
+           
+        }*/
 
         public static void DeleteProduct(int Id)
         {
