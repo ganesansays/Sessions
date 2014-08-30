@@ -42,7 +42,7 @@ namespace Session2
            
         }*/
 
-        public static void DeleteProduct(int Id)
+        public static string DeleteProduct(int Id)
         {
             Product prod = Repository.Products.Find(
                     p => p.Id == Id
@@ -51,6 +51,11 @@ namespace Session2
             if (prod != null)
             {
                 Repository.Products.Remove(prod);
+                return ("Product deleted successfully!!!");
+            }
+            else
+            {
+                return ("Product not found!!!");
             }
         }
     }

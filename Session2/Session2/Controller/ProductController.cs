@@ -28,19 +28,13 @@ namespace Session2.Controller
              Product prodtofetch = ProductOperation.FetchProduct(intent.IdToActOn);
              if (prodtofetch != null)
              {
-                 Console.WriteLine("Product Fetched!!!");
-                 Console.WriteLine("Product Name: " + prodtofetch.Name);
-                 Console.WriteLine("Product Rate: " + prodtofetch.Rate);
-                 Console.WriteLine("Press enter to update...");
-                 Console.ReadLine();
+                 Console.WriteLine("Fetched Product Name: " + prodtofetch.Name);
+                 Console.WriteLine("Fetched Product Rate: " + prodtofetch.Rate);
                  return new ProductView(prodtofetch);
              }
              else
              {
-                 Console.WriteLine("Product not available!!!");
-                 Console.WriteLine("Press enter to continue...");
-                 Console.ReadLine();
-                 return new HomeView();
+                 return new HomeView("Product not available!!!");
              }
              
          }
@@ -53,18 +47,12 @@ namespace Session2.Controller
              Product prodtodel = ProductOperation.FetchProduct(intent.IdToActOn);
              if (prodtodel != null)
              {
-                 ProductOperation.DeleteProduct(intent.IdToActOn);
-                 Console.WriteLine("Product deleted!!!");
-                 Console.WriteLine("Press enter to continue...");
-                 Console.ReadLine();
-                 return new HomeView();
+                 string message = ProductOperation.DeleteProduct(intent.IdToActOn);
+                 return new HomeView(message);
              }
              else
              {
-                 Console.WriteLine("Product not available!!!");
-                 Console.WriteLine("Press enter to continue...");
-                 Console.ReadLine();
-                 return new HomeView();
+                 return new HomeView("Product not found!!!");
              }
          }
              
