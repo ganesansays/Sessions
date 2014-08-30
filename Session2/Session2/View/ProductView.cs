@@ -27,6 +27,8 @@ namespace Session2.View
         {
             if (product != null)
             {
+                Console.WriteLine("Fetched Product Name: " + product.Name);
+                Console.WriteLine("Fetched Product Rate: " + product.Rate);
                 id = product.Id;
             }
             else 

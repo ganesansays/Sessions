@@ -28,8 +28,6 @@ namespace Session2.Controller
              Product prodtofetch = ProductOperation.FetchProduct(intent.IdToActOn);
              if (prodtofetch != null)
              {
-                 Console.WriteLine("Fetched Product Name: " + prodtofetch.Name);
-                 Console.WriteLine("Fetched Product Rate: " + prodtofetch.Rate);
                  return new ProductView(prodtofetch);
              }
              else
