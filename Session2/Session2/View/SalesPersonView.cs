@@ -4,90 +4,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessEntities;
+using Session2.View;
+using Session2.Framework;
 
 namespace Session2.View
 {
-    static class SalePersonView
-    {
-        public static int Display()
+    class SalesPersonView : IView
+     {
+        SalesPerson spObj = null;
+        string spMessage = string.Empty;
+
+        public SalesPersonView()
         {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("What operation you want to perform?");
-                Console.WriteLine("[1]: Create");
-                Console.WriteLine("[2]: Fetch");
-                Console.WriteLine("[3]: Update");
-                Console.WriteLine("[4]: Delete");
-                Console.WriteLine("[5]: Go to main menu");
 
-                string choiceString = Console.ReadLine();
-                int choice = 0;
-                if (!Int32.TryParse(choiceString, out choice))
-                {
-                    Console.WriteLine("Please enter a valid choice ...");
-                    continue;
-                }
-                return choice;
-            }
         }
-
-        public static SalesPerson Create()
+        public SalesPersonView(String message)
+        {
+            spMessage = message;
+        }
+        public SalesPersonView(Object spObj)
+        {
+            this.spObj = spObj as SalesPerson;
+        }
+        public Intent Display()
         {
             Console.Clear();
-            Console.Write("Enter SalesPerson Id: ");
-            string spIdInput = Console.ReadLine();
-            Console.Write("Enter SalesPerson Name: ");
-            string spNameInput = Console.ReadLine();
-            Console.Write("Enter SalesPerson Number: ");
-            string spContactNumberInput = Console.ReadLine();
-
             int id = 0;
-            Int32.TryParse(spIdInput, out id);
 
-            SalesPerson salePersonObject = new SalesPerson(id, spNameInput, spContactNumberInput);
-
-            return salePersonObject;
-        }
-
-        public static void DisplaySalePerson(SalesPerson salePersonObj)
-        {
-            if (salePersonObj != null)
+            if (!string.IsNullOrEmpty(spMessage))
             {
-                Console.WriteLine(salePersonObj.Name);
+                Console.WriteLine(spMessage);
+                Console.WriteLine("Press enter to continue...");
+                Console.ReadLine();
+            }
+
+            if (spObj != null)
+            {
+                Console.WriteLine("This is an existing Sales Person, Name: " + spObj.Name);
+                id = spObj.Id;
             }
             else
             {
-                Console.WriteLine("Customer doesnt exist");
+                Console.Write("Enter Sales Person Id: ");
+                string idInput = Console.ReadLine();
+                Int32.TryParse(idInput, out id);
             }
 
-            Console.WriteLine("press anykey to continue ...");
-            Console.ReadLine();
-        }
-
-        public static int GetSalesPersonId()
-        {
-            Console.Clear();
-            Console.Write("Enter SalesPerson Id: ");
-            string idInput = Console.ReadLine();
-            int id = 0;
-            Int32.TryParse(idInput, out id);
-
-            return id;
-        }
-
-        public static SalesPerson Update(int id)
-        {
-            Console.Clear();
             Console.Write("Enter Sales Person Name: ");
             string name = Console.ReadLine();
             Console.Write("Enter Sales Person Contact Number: ");
             string contactNumber = Console.ReadLine();
 
-            SalesPerson salesPersonObj = new SalesPerson(id, name, contactNumber);
-            return salesPersonObj;
+            SalesPerson sp = new SalesPerson(id, name, contactNumber);
+
+            Intent intent = new Intent(Intent.SALES_PERSON_ENTITY, Intent.SAVE);
+            intent.Param = sp as object;
+
+            return intent;
+
         }
     }
-
-
 }
+
+

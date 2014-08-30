@@ -22,26 +22,31 @@ namespace Session2
               );
         }
 
-        public static void UpdateSalesPerson(SalesPerson salesPersonObj)
+        public static string UpdateSalesPerson(SalesPerson salesPerson)
         {
-            if (salesPersonObj == null) return;
-
+            if (salesPerson == null)
+            {
+                return "Sales Person Not Found";
+            }
+            
             SalesPerson sp = Repository.SalesPerson.Find(
-                    s => s.Id == salesPersonObj.Id
+                    s => s.Id == salesPerson.Id
                 );
 
             if (sp != null)
             {
-                sp.Name= salesPersonObj.Name;
-                sp.ContactNumber= salesPersonObj.ContactNumber;
+                sp.Name= salesPerson.Name;
+                sp.ContactNumber= salesPerson.ContactNumber;
+                return "SalesPerson updated successfuly";
             }
             else
             {
-                Console.WriteLine("SalesPerson Not Available");
+                Repository.SalesPerson.Add(salesPerson);
+                return "Sales Person added ...";
             }
         }
 
-        public static void DeleteSalesPerson(int Id)
+        public static string DeleteSalesPerson(int Id)
         {
             SalesPerson sp = Repository.SalesPerson.Find(
                     s => s.Id == Id
@@ -50,10 +55,11 @@ namespace Session2
             if (sp != null)
             {
                 Repository.SalesPerson.Remove(sp);
+                return "SalesPerson Deleted Successfuly";
             }
             else
             {
-                Console.WriteLine("SalesPerson Not Available");
+                return "SalesPerson Not Available";
             }
         }
 
