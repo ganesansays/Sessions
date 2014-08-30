@@ -22,18 +22,18 @@ namespace Session2
               );
         }
 
-        public static void UpdateSalesPerson(SalesPerson salesPerson)
+        public static void UpdateSalesPerson(SalesPerson salesPersonObj)
         {
-            if (salesPerson == null) return;
+            if (salesPersonObj == null) return;
 
             SalesPerson sp = Repository.SalesPerson.Find(
-                    s => s.Id == salesPerson.Id
+                    s => s.Id == salesPersonObj.Id
                 );
 
             if (sp != null)
             {
-                sp.Name= salesPerson.Name;
-                sp.ContactNumber= salesPerson.ContactNumber;
+                sp.Name= salesPersonObj.Name;
+                sp.ContactNumber= salesPersonObj.ContactNumber;
             }
             else
             {
