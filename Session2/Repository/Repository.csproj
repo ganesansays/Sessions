@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{10E40571-C474-4E3F-B008-44C0BEC91130}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{FBB58618-49CE-4C5A-A7D7-D357FB376B85}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Session2</RootNamespace>
-    <AssemblyName>Session2</AssemblyName>
+    <RootNamespace>Repository</RootNamespace>
+    <AssemblyName>Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,30 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\CustomerController.cs" />
-    <Compile Include="Controller\HomeController.cs" />
-    <Compile Include="Controller\ProductController.cs" />
-    <Compile Include="Controller\SalesPersonController.cs" />
-    <Compile Include="Framework\Framework.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="BillOperations.cs" />
+    <Compile Include="CustomerOperation.cs" />
+    <Compile Include="ProductOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Customer.cs" />
-    <Compile Include="View\Home.cs" />
-    <Compile Include="View\Intent.cs" />
-    <Compile Include="View\ProductView.cs" />
-    <Compile Include="View\SalesPersonView.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="RaiseInvoice.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="SalesOperations.cs" />
+    <Compile Include="SalesPersonOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
       <Project>{7a46afee-2a6a-4c85-be89-098b695caba3}</Project>
       <Name>BusinessEntities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{fbb58618-49ce-4c5a-a7d7-d357fb376b85}</Project>
-      <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
