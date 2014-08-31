@@ -8,7 +8,7 @@ using BusinessEntities;
 
 namespace Session2
 {
-    static class SalesOperations
+    public static class SalesOperations
     {
         public static void CreateSale(Sale saleObj)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Session2
 {
-    static class SalesPersonOperation
+    public static class SalesPersonOperation
     {
         public static void CreateSalesPerson(SalesPerson salesPerson)
         {

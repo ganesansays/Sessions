@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Session2
 {
-    class RaiseInvoice
+    public class RaiseInvoice
     {
        public void AddInvoice(Invoice invoice)
       {

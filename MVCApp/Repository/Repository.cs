@@ -9,7 +9,7 @@ namespace Session2
 {
     //Dont worry about this ... this is does a database
 
-    static class Repository
+    public static class Repository
     {
         public static List<SalesPerson> SalesPerson = new List<SalesPerson>();
         public static List<Customer> Customers = new List<Customer>();

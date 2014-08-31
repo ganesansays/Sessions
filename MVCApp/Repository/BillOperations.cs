@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Session2
 {
-    class BillOperations
+    public class BillOperations
     {
         public static void CreateBill(Bill bill)
         {
