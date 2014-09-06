@@ -11,8 +11,25 @@ namespace Session2
     {
         public static string CreateBill(Bill bill)
         {
-            Repository.Bills.Add(bill);
-            return ("Bill added!!!");
+            if (bill == null) return ("Error: No Bill available!!!");
+
+            Bill billtoadd = Repository.Bills.Find(
+                    c => c.Id == bill.Id
+                );
+
+            if (billtoadd != null)
+            {
+                billtoadd.CustomerId = bill.CustomerId;
+                billtoadd.InvoiceId = bill.InvoiceId;
+                billtoadd.AmountPaid = bill.AmountPaid;
+                return ("Bill updated!!!");
+            }
+            else
+            {
+                Repository.Bills.Add(bill);
+                return ("Bill added!!!");
+            }
+            
         }
 
         public static Bill FetchBill(int Id)
@@ -36,7 +53,7 @@ namespace Session2
             }
         }
 
-        public static void DeleteBill(int Id)
+        public static string DeleteBill(int Id)
         {
             Bill bill = Repository.Bills.Find(
                     b => b.Id == Id
@@ -45,6 +62,11 @@ namespace Session2
             if (bill != null)
             {
                 Repository.Bills.Remove(bill);
+                return ("Bill deleted!!!");
+            }
+            else
+            {
+                return ("Bill Not Found!!!");
             }
         }
     }

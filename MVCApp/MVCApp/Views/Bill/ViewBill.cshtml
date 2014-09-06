@@ -1,0 +1,24 @@
+﻿@model BusinessEntities.Bill
+
+<html>
+<head>
+    <title>BillView</title>
+</head>
+<body>
+
+    <a href="~/Bill/Create/">Create</a><br />
+    <a href="~/Bill/Fetch/">Fetch&Update</a><br />
+    <a href="~/Bill/Delete/">Delete</a><br />
+    <a href="~/Home/Index/">Home</a><br />
+
+    <form action="~/Bill/Save" method="post">
+        Bill Id: <input type="text" name="Id" value="@Html.DisplayFor(model => model.Id)" /><br />
+        Invoice Id: <input type="text" name="InvoiceId" value="@Html.DisplayFor(model => model.InvoiceId)" /><br />
+        Customer Id: <input type="text" name="CustomerId" value="@Html.DisplayFor(model => model.CustomerId)" /><br />
+        Amount Paid: <input type="number" name="AmountPaid" value="@Html.DisplayFor(model => model.AmountPaid)" /><br />
+        <input type="submit" value="save" />
+
+    </form>
+
+</body>
+</html>

@@ -146,8 +146,9 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Bill\Index.cshtml" />
-    <Content Include="Views\Bill\Create.cshtml" />
     <Content Include="Views\Bill\Fetch.cshtml" />
+    <Content Include="Views\Bill\ViewBill.cshtml" />
+    <Content Include="Views\Bill\Delete.cshtml" />
     <Content Include="Views\Customer\Fetch.cshtml" />
     <Content Include="Views\Customer\ViewCustomer.cshtml" />
     <Content Include="Views\Sales\Create.cshtml" />
