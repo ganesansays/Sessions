@@ -31,5 +31,26 @@ namespace MVCApp.Controllers
             //return "Maniraja";
             return RedirectToAction("Index", "Home"); //Action, Controller
         }
+        public ActionResult Fetch()
+        {
+            return View();
+        } 
+        //ViewSalesPerson
+        public ActionResult ViewSalesPerson(int Id)
+        {
+            
+            SalesPerson spObj = SalesPersonOperation.FetchSalesPerson(Id);
+
+            return View(spObj);
+        }
+        public ActionResult Delete()
+        {
+            return View();
+        }
+        public ActionResult DeleteSalesPerson(int Id)
+        { 
+             string result = SalesPersonOperation.DeleteSalesPerson(Id);
+             return RedirectToAction("Index", "Home"); //Action, Controller
+        }
 	}
 }
