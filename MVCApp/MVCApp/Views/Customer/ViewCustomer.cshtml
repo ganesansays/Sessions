@@ -1,0 +1,21 @@
+﻿@model BusinessEntities.Customer
+
+<html>
+<head>
+    <title>Functional Site</title>
+</head>
+<body>
+    <a href="#">Create</a> <br />
+    <a href="#">Fetch & Update</a> <br />
+    <a href="#">Delete</a> <br />
+    <a href="~/Home/Index/">Home</a> <br />
+
+    <form action="~/Customer/Save" method="post">
+        Customer Id: <input type="text" name="Id" value="@Html.DisplayFor(model => model.Id)" /> <br />
+        Customer Name: <input type="text" name="Name" value="@Html.DisplayFor(model => model.Name)" /> <br />
+        Customer Contact: <input type="text" name="ContactNumber" value="@Html.DisplayFor(model => model.ContactNumber)" /> <br />
+
+        <input type="submit" value="Save" />
+    </form>
+</body>
+</html>

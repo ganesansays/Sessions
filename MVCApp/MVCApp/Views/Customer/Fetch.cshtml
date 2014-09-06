@@ -3,9 +3,14 @@
         <title>Functional Site</title>
     </head>
     <body>
-        <a href="~/Customer/Create">Create</a> <br/>
+        <a href="~/Customer/Create">Create</a> <br />
         <a href="~/Customer/Fetch">Fetch & Update</a> <br />
         <a href="#">Delete</a> <br />
         <a href="~/Home/Index/">Home</a> <br />
+
+        <form action="~/Customer/ViewCustomer" method="get">
+            Customer Id: <input type="text" name="Id" /> <br />
+            <input type="submit" value="Fetch" />
+        </form>
     </body>
 </html>

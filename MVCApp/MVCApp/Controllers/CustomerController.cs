@@ -19,7 +19,7 @@ namespace MVCApp.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View("ViewCustomer");
         }
 
         [HttpPost]
@@ -31,6 +31,20 @@ namespace MVCApp.Controllers
             }
 
             return RedirectToAction("Index", "Home"); //Action, Controller
+        }
+
+        public ActionResult Fetch()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult ViewCustomer(int Id)
+        {
+            Customer cust = CustomerOperation.FetchCustomer(Id);
+
+            return View(cust);
         }
 	}
 }
