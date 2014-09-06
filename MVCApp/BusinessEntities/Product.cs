@@ -12,6 +12,11 @@ namespace BusinessEntities
         public string Name { get; set; }
         public decimal Rate { get; set; }
 
+        public Product()
+        {
+
+        }
+        
         public Product(int Id, string Name, decimal Rate)
         {
             this.Id = Id;

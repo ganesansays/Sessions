@@ -9,9 +9,10 @@ namespace Session2
 {
     public class BillOperations
     {
-        public static void CreateBill(Bill bill)
+        public static string CreateBill(Bill bill)
         {
             Repository.Bills.Add(bill);
+            return ("Bill added!!!");
         }
 
         public static Bill FetchBill(int Id)

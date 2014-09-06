@@ -13,6 +13,11 @@ namespace BusinessEntities
         public int CustomerId { get; set; }
         public decimal AmountPaid { get; set; }
 
+        public Bill()
+        {
+
+        }
+        
         public Bill(int Id, int InvoiceId, int CustomerId, decimal AmountPaid)
         {
             this.Id = Id;

@@ -114,8 +114,10 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,6 +142,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Bill\Index.cshtml" />
+    <Content Include="Views\Bill\Create.cshtml" />
+    <Content Include="Views\Bill\Fetch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">

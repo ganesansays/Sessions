@@ -1,0 +1,23 @@
+﻿<html>
+<head>
+    <title>Bill Create</title>
+</head>
+<body>
+    <a href="#">Create</a><br />
+    <a href="#">Fetch&Update</a><br />
+    <a href="#">Delete</a><br />
+    <a href="~/Home/Index/">Home</a><br />
+
+    <form action="~/Bill/Save" method="post">
+        
+        Bill Id: <input type="text" name="Id" /><br />
+        Invoice Id: <input type="text" name="InvoiceId" /><br />
+        Customer Id: <input type="text" name="CustomerId" /><br />
+        Amount Paid: <input type="number" name="AmountPaid"/><br />
+
+        <input type="submit" value="save" />
+
+    </form>
+
+</body>
+</html>
