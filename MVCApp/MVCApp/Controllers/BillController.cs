@@ -19,7 +19,7 @@ namespace MVCApp.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View("ViewBill");
         }
 
         public ActionResult Save(Bill billtosave)
@@ -37,6 +37,24 @@ namespace MVCApp.Controllers
             return View();
         }
 
-        
+        public ActionResult ViewBill(int id)
+        {
+            Bill bill = BillOperations.FetchBill(id);
+
+            return View(bill);
+        }
+
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        public ActionResult DeleteBill(int id)
+        {
+            string messagedel = BillOperations.DeleteBill(id);
+
+            return RedirectToAction("Index", "Bill");
+
+        }
 	}
 }
