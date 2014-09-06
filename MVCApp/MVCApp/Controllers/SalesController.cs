@@ -21,10 +21,10 @@ namespace MVCApp.Controllers
         {
             return View();
         }
-        public String Save(Sale saObj)
+        public ActionResult Save(Sale saObj)
         {
-            return "Maniraja";
-            //return RedirectToAction("Index", "Home"); //Action, Controller
+            //return "Maniraja";
+            return RedirectToAction("Index", "Home"); //Action, Controller
         }
 	}
 }
