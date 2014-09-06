@@ -118,6 +118,8 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\SalesPersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -148,6 +150,10 @@
     <Content Include="Views\Bill\Fetch.cshtml" />
     <Content Include="Views\Customer\Fetch.cshtml" />
     <Content Include="Views\Customer\ViewCustomer.cshtml" />
+    <Content Include="Views\Sales\Create.cshtml" />
+    <Content Include="Views\Sales\Sales.cshtml" />
+    <Content Include="Views\SalesPerson\Create.cshtml" />
+    <Content Include="Views\SalesPerson\SalesPerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">

@@ -14,6 +14,10 @@ namespace BusinessEntities
         public int ProductId { get; set; }
         public int Quantity { get; set; }
         public decimal Discount { get; set; }
+        public Sale()
+        {
+
+        }
 
         public Sale(int Id, int SalesPersonId, int CustomerId, int ProductId, int Quantity, decimal Discount)
         {
