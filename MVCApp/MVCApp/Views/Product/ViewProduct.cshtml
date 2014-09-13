@@ -1,0 +1,23 @@
+﻿@model BusinessEntities.Product
+
+<html>
+<head>
+    <title>Product Create/View</title>
+</head>
+<body>
+
+    <a href="~/Product/Create/">Create</a><br />
+    <a href="~/Product/Fetch/">Fetch&Update</a><br />
+    <a href="~/Product/Delete/">Delete</a><br />
+    <a href="~/Home/Index/">Home</a><br />
+
+    <form action="~/Product/Save" method="post">
+        Product Id: <input type="text" name="Id" value="@Html.DisplayFor(model => model.Id)" /><br />
+        Product Name: <input type="text" name="Name" value="@Html.DisplayFor(model => model.Name)" /><br />
+        Product Rate: <input type="number" name="Rate" value="@Html.DisplayFor(model => model.Rate)" /><br />
+        <input type="submit" value="save" />
+
+    </form>
+
+</body>
+</html>

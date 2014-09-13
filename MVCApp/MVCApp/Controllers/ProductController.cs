@@ -19,7 +19,7 @@ namespace MVCApp.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View("ViewProduct");
         }
 
         public ActionResult Save(Product prod)
@@ -28,6 +28,30 @@ namespace MVCApp.Controllers
             {
                 string messagesave = ProductOperation.CreateProduct(prod);
             }
+            return RedirectToAction("Index", "Product");
+        }
+
+        public ActionResult Fetch()
+        {
+            return View();
+        }
+
+        public ActionResult ViewProduct(int id)
+        {
+            Product product = ProductOperation.FetchProduct(id);
+
+            return View(product);
+        }
+
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        public ActionResult DeleteProduct(int id)
+        {
+            string messagedel = ProductOperation.DeleteProduct(id);
+
             return RedirectToAction("Index", "Product");
         }
 	}

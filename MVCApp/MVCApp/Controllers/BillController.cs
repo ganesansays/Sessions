@@ -54,7 +54,6 @@ namespace MVCApp.Controllers
             string messagedel = BillOperations.DeleteBill(id);
 
             return RedirectToAction("Index", "Bill");
-
         }
 	}
 }

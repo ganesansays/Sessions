@@ -144,7 +144,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Bill\Index.cshtml" />
     <Content Include="Views\Bill\Fetch.cshtml" />
     <Content Include="Views\Bill\ViewBill.cshtml" />
@@ -155,6 +154,9 @@
     <Content Include="Views\Sales\Sales.cshtml" />
     <Content Include="Views\SalesPerson\Create.cshtml" />
     <Content Include="Views\SalesPerson\SalesPerson.cshtml" />
+    <Content Include="Views\Product\Fetch.cshtml" />
+    <Content Include="Views\Product\ViewProduct.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
