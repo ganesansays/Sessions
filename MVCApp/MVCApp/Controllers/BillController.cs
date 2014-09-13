@@ -37,11 +37,17 @@ namespace MVCApp.Controllers
             return View();
         }
 
-        public ActionResult ViewBill(int id)
+        public ActionResult ViewBill(int? id)
         {
-            Bill bill = BillOperations.FetchBill(id);
-
-            return View(bill);
+            if (id != null)
+            { 
+                Bill bill = BillOperations.FetchBill(id.Value);
+                return View(bill);
+            }
+            else
+            { 
+                return RedirectToAction("Index", "Bill");
+            }
         }
 
         public ActionResult Delete()
@@ -49,11 +55,14 @@ namespace MVCApp.Controllers
             return View();
         }
 
-        public ActionResult DeleteBill(int id)
+        public ActionResult DeleteBill(int? id)
         {
-            string messagedel = BillOperations.DeleteBill(id);
-
+            if (id != null)
+            { 
+                string messagedel = BillOperations.DeleteBill(id.Value);
+            }
             return RedirectToAction("Index", "Bill");
+            
         }
 	}
 }
