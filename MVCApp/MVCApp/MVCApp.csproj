@@ -157,6 +157,11 @@
     <Content Include="Views\Product\Fetch.cshtml" />
     <Content Include="Views\Product\ViewProduct.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Sales\Fetch.cshtml" />
+    <Content Include="Views\SalesPerson\Fetch.cshtml" />
+    <Content Include="Views\SalesPerson\ViewSalesPerson.cshtml" />
+    <Content Include="Views\SalesPerson\Delete.cshtml" />
+    <Content Include="Views\SalesPerson\DeleteSalesPerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessEntities\BusinessEntities.csproj">
