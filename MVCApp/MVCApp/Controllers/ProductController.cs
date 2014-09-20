@@ -36,11 +36,17 @@ namespace MVCApp.Controllers
             return View();
         }
 
-        public ActionResult ViewProduct(int id)
+        public ActionResult ViewProduct(int? id)
         {
-            Product product = ProductOperation.FetchProduct(id);
-
+            if (id != null)
+            { 
+            Product product = ProductOperation.FetchProduct(id.Value);
             return View(product);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Product");
+            }
         }
 
         public ActionResult Delete()
@@ -48,10 +54,13 @@ namespace MVCApp.Controllers
             return View();
         }
 
-        public ActionResult DeleteProduct(int id)
+        public ActionResult DeleteProduct(int? id)
         {
-            string messagedel = ProductOperation.DeleteProduct(id);
-
+            if (id != null)
+            {
+                string messagedel = ProductOperation.DeleteProduct(id.Value);
+            }
+            
             return RedirectToAction("Index", "Product");
         }
 	}
